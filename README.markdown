@@ -39,6 +39,30 @@ This is a Java-based small scale portfolio management system designed to simulat
    ```
    ./gradlew run
    ```
+## Example Output
+Below is a sample output from the system showing a market price update followed by the portfolio valuation:
+
+```
+=== Market Price Update ===
+Ticker Price 
+---------------------------------------------
+TSLA  349.56
+---------------------------------------------
+
+
+=== Portfolio ===
+Ticker                         Shares               Price                          Market Value                  
+---------------------------------------------
+AAPL                           1000                 207.04                         207035.88                     
+TSLA                           -500                 349.56                         -174779.17                    
+AAPL-OCT-2025-110-P            20000                3.95                           79061.38                      
+AAPL-OCT-2025-300-C            -20000               18.03                          -360513.36                    
+TSLA-DEC-2025-400-P            -10000               90.73                          -907255.17                    
+TSLA-NOV-2025-400-C            10000                39.56                          395570.90                     
+---------------------------------------------
+Total NAV: -760879.54
+```
+
 
 ## Configuration
 - Update `application.properties` with initial stock prices (e.g., `portfolio.stock.aapl.initial.price` and `portfolio.stock.tsla.initial.price`).
