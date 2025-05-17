@@ -16,6 +16,24 @@ public class EuropeanOption extends Instrument {
     private Double strikePrice;
     private LocalDate strikeDate;
 
+    public void setUnderlyingTicker(String underlyingTicker) {
+        this.underlyingTicker = underlyingTicker;
+    }
+
+    public void setStrikeDate(LocalDate strikeDate) {
+        this.strikeDate = strikeDate;
+    }
+
+    public void setStrikePrice(Double strikePrice) {
+        this.strikePrice = strikePrice;
+    }
+
+    public void setOptionType(OptionType optionType) {
+        this.optionType = optionType;
+    }
+
+    private String underlyingTicker;
+
     public OptionType getOptionType() {
         return optionType;
     }
@@ -27,4 +45,11 @@ public class EuropeanOption extends Instrument {
     public LocalDate getStrikeDate() {
         return strikeDate;
     }
+
+    public String getUnderlyingTicker() {
+        return underlyingTicker;
+    }
+
+
+
 }

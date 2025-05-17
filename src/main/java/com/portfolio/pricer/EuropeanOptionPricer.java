@@ -11,6 +11,22 @@ public class EuropeanOptionPricer implements OptionPricer{
                         double yearToMaturity,
                         double riskFreeRate,
                         double sigma){
+        if (type == null) {
+            throw new IllegalArgumentException("Option type cannot be null");
+        }
+        if (type != OptionType.CALL && type != OptionType.PUT) {
+            throw new IllegalArgumentException("Invalid option type: " + type);
+        }
+        if (underlyingPrice <= 0) {
+            throw new IllegalArgumentException("Underlying price must be positive: " + underlyingPrice);
+        }
+        if (strikePrice <= 0) {
+            throw new IllegalArgumentException("Strike price must be positive: " + strikePrice);
+        }
+        if (sigma <= 0) {
+            throw new IllegalArgumentException("Volatility must be positive: " + sigma);
+        }
+
         if (yearToMaturity <= 0) {
             return type == OptionType.CALL ? Math.max(0, underlyingPrice - strikePrice) : Math.max(0, strikePrice - underlyingPrice);
         }

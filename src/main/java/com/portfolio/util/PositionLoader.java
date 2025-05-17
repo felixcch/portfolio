@@ -1,7 +1,7 @@
 package com.portfolio.util;
 
 import com.google.common.io.Resources;
-import com.portfolio.model.Position;
+import com.portfolio.model.PositionLine;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -9,9 +9,9 @@ import java.util.List;
 
 public class PositionLoader {
 
-    public static List<Position> loadPositions() throws Exception {
+    public static List<PositionLine> loadPositions() throws Exception {
         System.out.println("loadPositions : " );
-        List<Position> positions = new ArrayList<>();
+        List<PositionLine> positionLines = new ArrayList<>();
         try{
             List<String> lines = Resources.readLines(
                     Resources.getResource("position.csv"),
@@ -20,7 +20,7 @@ public class PositionLoader {
             System.out.println("lines : " + lines);
             for (String line : lines.subList(1, lines.size())) { // Skip header
                 String[] parts = line.split(",");
-                positions.add(new Position(parts[0], Integer.parseInt(parts[1])));
+                positionLines.add(new PositionLine(parts[0], Integer.parseInt(parts[1])));
 
             }
         }
@@ -28,7 +28,7 @@ public class PositionLoader {
             System.out.println("Failed to read position file");
             throw e;
         }
-        return positions;
+        return positionLines;
     }
 
 }

@@ -11,5 +11,7 @@ public class Stock extends Instrument {
     private Double expectedReturn;
     public Double getAnnualizedSd() { return annualizedSd; }
     public Double getExpectedReturn() { return expectedReturn; }
+    public void setAnnualizedSd(Double annualizedSd) { this.annualizedSd = annualizedSd; }
+    public void setExpectedReturn(Double expectedReturn) { this.expectedReturn = expectedReturn; }
 }
 

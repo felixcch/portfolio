@@ -1,6 +1,7 @@
 package com.portfolio.util;
 
 public class MathUtil {
+    //copy from reference online
     public static double normCdf(double x) {
         double t = 1.0 / (1.0 + 0.2316419 * Math.abs(x));
         double d = 0.3989423 * Math.exp(-x * x / 2);

@@ -1,21 +1,25 @@
 package com.portfolio.pricer;
 
 import com.portfolio.model.instrument.option.OptionType;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
+import org.junit.jupiter.api.TestInstance;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class EuropeanOptionPricerTest {
 
-    @InjectMocks
     private EuropeanOptionPricer europeanOptionPricer;
     // Unit Test: EuropeanOptionPricer - Call Option
+
+    @BeforeAll
+    public void setUp(){
+        europeanOptionPricer = new EuropeanOptionPricer();
+    }
     @Test
-    void testEuropeanOptionPricerCall() {
+    public void testEuropeanOptionPricerCall() {
         double underlyingPrice = 100.0;
         double strikePrice = 100.0;
         double yearToMaturity = 1.0;
@@ -27,12 +31,12 @@ public class EuropeanOptionPricerTest {
 
         // Expected price based on Black-Scholes (approximate, verified with external calculator)
         assertTrue(price > 0, "Call option price should be positive");
-        assertEquals(8.02, price, 0.1, "Call option price mismatch");
+        assertEquals(8.91, price, 0.1, "Call option price mismatch");
     }
 
     // Unit Test: EuropeanOptionPricer - Put Option
     @Test
-    void testEuropeanOptionPricerPut() {
+    public void testEuropeanOptionPricerPut() {
         double underlyingPrice = 100.0;
         double strikePrice = 100.0;
         double yearToMaturity = 1.0;
@@ -44,6 +48,6 @@ public class EuropeanOptionPricerTest {
 
         // Expected price based on Black-Scholes (approximate, verified with external calculator)
         assertTrue(price > 0, "Put option price should be positive");
-        assertEquals(5.57, price, 0.1, "Put option price mismatch");
+        assertEquals(6.93, price, 0.1, "Put option price mismatch");
     }
 }

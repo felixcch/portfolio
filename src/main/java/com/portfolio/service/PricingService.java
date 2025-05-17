@@ -3,7 +3,7 @@ package com.portfolio.service;
 import com.portfolio.model.instrument.option.EuropeanOption;
 import com.portfolio.pricer.OptionPricer;
 import com.portfolio.pricer.OptionPricerFactory;
-import org.h2.util.DateTimeUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
@@ -15,14 +15,17 @@ import java.time.temporal.ChronoUnit;
 public class PricingService {
     private static final SecureRandom random = new SecureRandom();
 
-    public double getOptionPrice(EuropeanOption europeanOption, double underlyingPrice, double underlyingAnnualizedStandardDeviation) {
+    @Value("${portfolio.risk.free.rate:0.02}")
+    private double riskfreeRate;
+
+    public double priceOption(EuropeanOption europeanOption, double underlyingPrice, double underlyingAnnualizedStandardDeviation) {
         OptionPricer optionPricer = OptionPricerFactory.getPricer(europeanOption);
         return optionPricer.price(
                 europeanOption.getOptionType(),
                 underlyingPrice,
                 europeanOption.getStrikePrice(),
                 getYTM(LocalDate.now(), europeanOption.getStrikeDate()),
-                0.02,
+                riskfreeRate,
                 underlyingAnnualizedStandardDeviation);
     }
 
@@ -33,13 +36,19 @@ public class PricingService {
                                       double dT){
         // Geometric Brownian Motion
         double randomVariable = random.nextGaussian();
+        double timeFraction = dT / 7257600;
         double dS = currentPrice *
                 (
-                  (expectedReturn * dT / 7257600)
+                  (expectedReturn * timeFraction)
                   +
-                  (annualizedStandardDeviation * randomVariable * Math.sqrt(dT / 7257600))
+                  (annualizedStandardDeviation * randomVariable * Math.sqrt(timeFraction))
                 );
-        return currentPrice + dS;
+        double newPrice = currentPrice + dS;
+        //reset to 0.01 if new price is <= 0
+        if(newPrice <= 0){
+            return 0.01;
+        }
+        return newPrice;
     }
 
     private double getYTM(LocalDate d1, LocalDate d2){

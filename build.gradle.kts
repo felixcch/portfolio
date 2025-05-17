@@ -16,6 +16,7 @@ dependencies {
     implementation ("com.google.guava:guava:33.0.0-jre")
     testImplementation ("org.mockito:mockito-core:3.5.13")
     testImplementation ("org.junit.jupiter:junit-jupiter:5.10.2")
+    testImplementation ("org.mockito:mockito-inline:4.6.1")
 }
 
 tasks.test { useJUnitPlatform() }

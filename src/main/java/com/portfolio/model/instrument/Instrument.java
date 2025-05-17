@@ -16,5 +16,11 @@ public class Instrument {
     private InstrumentType instrumentType;
     public String getTicker() { return ticker; }
     public InstrumentType getInstrumentType() { return instrumentType; }
+    public void setTicker(String ticker){
+        this.ticker = ticker;
+    }
+    public void setInstrumentType(InstrumentType instrumentType){
+        this.instrumentType = instrumentType;
+    }
 }
 
