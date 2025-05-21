@@ -1,7 +1,7 @@
 # Portfolio Management System
 
 ## Overview
-This is a Java-based small scale portfolio management system designed to simulate and manage stock and option portfolios. The system includes features for real-time stock price updates, portfolio valuation, and option pricing using Monte Carlo methods and Black-Scholes models.
+This is a Java-based small scale portfolio management system designed to simulate and manage stock and option portfolios. The system includes features for real-time stock price updates, portfolio valuation, and option pricing using customized models.
 
 ## Features
 - Real-time stock price simulation using Geometric Brownian Motion.
