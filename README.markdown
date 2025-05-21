@@ -19,6 +19,7 @@ This is a Java-based small scale portfolio management system designed to simulat
   - `repository`: Data access layer for instruments.
   - `service`: Core services for market data, portfolio management, and pricing.
   - `util`: Utility classes for mathematical computations.
+  - `PortfolioRunner.java`: Spring boot application
 - `src/test/java/com.portfolio`: Unit tests for the system components.
 - `resources`: Configuration files (`application.properties`) and data files (`position.csv`).
 
@@ -37,7 +38,7 @@ This is a Java-based small scale portfolio management system designed to simulat
    ```
 4. Run the application:
    ```
-   ./gradlew run
+   ./gradlew bootRun
    ```
 ## Example Output
 Below is a sample output from the system showing a market price update followed by the portfolio valuation:
